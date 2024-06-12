@@ -36,7 +36,7 @@ function App() {
       console.error('Failed to fetch user details:', error);
     }
   };
- 
+
   useEffect(() => {
     fetchUserDetails();
   }, [dispatch]);

@@ -1,5 +1,5 @@
 const productCategory = [
-    {id : 1, label : "Headphone", value : "headphone"},
+    {id : 1, label : "Earphone", value : "earphone"},
     {id : 2, label : "Phone", value : "phone"},
     {id : 3, label : "Phone cover", value : "phoneCover"},
     {id : 4, label : "Noutbook", value : "noutbook"},

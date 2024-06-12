@@ -1,31 +1,8 @@
-// const userModel = require("../modules/userModel");
-
-// async function userDetailController(req, res){
-//     try{
-//        console.log("userId" , req.userId);
-//        const user = await userModel.findById(req.userId)
-//        console.log("user", user);
-//        res.status(200).json({
-//         data : user,
-//         error: false,
-//         success: true,
-//         message : "User detail"
-//        })
-//     }catch(err){
-//       res.status(400).json({
-//         message : err.message || err,
-//         error : true,
-//         success : false
-//       })
-//     }
-// }
-// module.exports = userDetailController
-const userModel = require("../modules/userModel");
+ const userModel = require("../modules/userModel");
 
 async function userDetailController(req, res) {
     try {
         console.log("userId", req.userId);
-        
         // Check if user ID is provided
         if (!req.userId) {
             return res.status(401).json({
@@ -37,7 +14,6 @@ async function userDetailController(req, res) {
 
         // Find user by ID
         const user = await userModel.findById(req.userId);
-
         // If user not found, return error
         if (!user) {
             return res.status(404).json({
@@ -46,7 +22,6 @@ async function userDetailController(req, res) {
                 success: false
             });
         }
-
         // Return user details
         res.status(200).json({
             data: user,
@@ -63,5 +38,4 @@ async function userDetailController(req, res) {
         });
     }
 }
-
 module.exports = userDetailController;
