@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import UploadProduct from '../UploadProduct'
 import SummaryApi from '../../common'
+import AdminProductCard from '../AdminProductCard'
 
 const AllProducts = () => {
   const [openUploadProduct, setOpenUploadProduct] = useState(false)
@@ -23,13 +24,11 @@ const AllProducts = () => {
         </button>
       </div>
       {/* all product */}
-      <div>
+      <div className='flex items-center gap-3'>
         {
           allProduct.map((product, index) => {
             return(
-              <div>
-                <img src={product.productImage} width={100} height={100}/>
-              </div>
+              <AdminProductCard data={product} key={index + "allProduct"} fetchdata = {fetchAllProduct}/>
             )
           })
         }
