@@ -24,7 +24,7 @@ const AllProducts = () => {
         </button>
       </div>
       {/* all product */}
-      <div className='flex items-center gap-3'>
+      <div className='flex items-center flex-wrap gap-5 h-[calc(100vh-200px)] overflow-y-scroll ml-10'>
         {
           allProduct.map((product, index) => {
             return(
@@ -36,7 +36,7 @@ const AllProducts = () => {
       {/* upload product component */}
       {
         openUploadProduct && (
-          <UploadProduct onClose={() => setOpenUploadProduct(false)}/>
+          <UploadProduct onClose={() => setOpenUploadProduct(false)} fetchData={fetchAllProduct}/>
         )
       }
     </div>

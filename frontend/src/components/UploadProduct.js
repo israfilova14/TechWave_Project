@@ -6,7 +6,10 @@ import DisplayImage from './DisplayImage';
 import SummaryApi from '../common';
 import {toast} from "react-toastify"
 
-const UploadProduct = ({ onClose }) => {
+const UploadProduct = ({ 
+    onClose,
+    fetchData
+ }) => {
     const [data, setData] = useState({
         productName: "",
         brandName: "",
@@ -62,6 +65,7 @@ const UploadProduct = ({ onClose }) => {
         if(responseData.success){
            toast.success(responseData?.message)
            onClose()
+           fetchData()
         }
         if(responseData.error){
             toast.error(responseData?.message)
