@@ -13,7 +13,7 @@
 //     }
 // }
 
-const userModel = require("../modules/userModel");
+const userModel = require("../../modules/userModel");
 
 // module.exports = allUsers
 async function allUsers(req, res) {

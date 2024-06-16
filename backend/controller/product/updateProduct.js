@@ -24,8 +24,8 @@
 //     }
 // } 
 // module.exports = updateProductController
-const uploadProductPermission = require("../helpers/permission");
-const productModel = require("../modules/productModel");
+const uploadProductPermission = require("../../helpers/permission");
+const productModel = require("../../modules/productModel");
 
 async function updateProductController(req, res) {
     try {

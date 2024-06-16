@@ -70,7 +70,7 @@
 
 // module.exports = userSignInController;
 const bcrypt = require('bcryptjs');
-const userModel = require('../modules/userModel');
+const userModel = require('../../modules/userModel');
 const jwt = require('jsonwebtoken');
 
 async function userSignInController(req, res) {

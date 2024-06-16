@@ -1,4 +1,4 @@
-const  userModel = require("../modules/userModel");
+const  userModel = require("../../modules/userModel");
 
 async function updateUser(req, res){
     try{

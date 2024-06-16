@@ -1,5 +1,5 @@
  const bcrypt = require('bcryptjs');
-const userModel = require('../modules/userModel');
+const userModel = require('../../modules/userModel');
 
 async function userSignUpController(req, res) {
     try {
