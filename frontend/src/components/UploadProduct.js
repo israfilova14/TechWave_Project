@@ -4,13 +4,11 @@ import productCategory from "../helpers/productCategory";
 import uploadImage from '../helpers/uploadImage';
 import DisplayImage from './DisplayImage';
 import SummaryApi from '../common';
-import {toast} from "react-toastify"
+import { toast } from "react-toastify";
 
-const UploadProduct = ({ 
-    onClose,
-    fetchData
- }) => {
+const UploadProduct = ({ onClose, fetchData }) => {
     const [data, setData] = useState({
+        // _id: "66697cad09b28500f18927c5", // Ensure _id is included for updates
         productName: "",
         brandName: "",
         category: "",
@@ -49,28 +47,48 @@ const UploadProduct = ({
             productImage: newProductImage
         }));
     };
-
-    const handleSubmit = async(e) => {
+    
+    const handleSubmit = async (e) => {
+        console.log("hello");
         e.preventDefault();
+        console.log("hello");
         console.log("data", data);
-        const response = await fetch(SummaryApi.uploadProduct.url, {
-            method : SummaryApi.uploadProduct.method,
-            credentials : "include",
-            headers :{
-                "content-type" : "application/json"
-            },
-            body : JSON.stringify(data)
-        })
-        const responseData = await response.json()
-        if(responseData.success){
-           toast.success(responseData?.message)
-           onClose()
-           fetchData()
+    
+
+        const url = data._id ? SummaryApi.updateProduct.url : SummaryApi.uploadProduct.url;
+        const method = data._id ? SummaryApi.updateProduct.method : SummaryApi.uploadProduct.method;
+    
+        try {
+            const response = await fetch(url, {
+                method: method,
+                credentials: "include",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(data)
+            });
+    
+            if (!response.ok) {
+                // Handle HTTP errors
+                const errorData = await response.json();
+                throw new Error(errorData.message || "Something went wrong");
+            }
+    
+            const responseData = await response.json();
+    
+            if (responseData.success) {
+                toast.success(responseData.message);
+                onClose();
+                fetchData();
+            } else {
+                toast.error(responseData.message);
+            }
+        } catch (err) {
+            // Handle fetch and JSON errors
+            toast.error(err.message || "An error occurred while submitting the form");
         }
-        if(responseData.error){
-            toast.error(responseData?.message)
-         }
     };
+    
 
     return (
         <div className='fixed top-0 left-0 bg-slate-200 bg-opacity-50 right-0 bottom-0 w-full h-full flex justify-center items-center'>

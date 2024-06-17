@@ -1,8 +1,13 @@
 import React from 'react'
+import CategoryList from '../CategoryList'
+import BannerProduct from '../BannerProduct'
 
 const Home = () => {
   return (
-    <div>Home</div>
+    <div>
+      <CategoryList/>
+      <BannerProduct/>
+    </div>
   )
 }
 
