@@ -1,23 +1,23 @@
 import React, { useEffect, useState } from 'react'
 import banner1 from "../assest/banner images/banner1.jpg"
-// import banner2 from "../assest/banner images/banner2.jpg"
+import banner2 from "../assest/banner images/banner2.jpg"
 import banner3 from "../assest/banner images/banner3.jpg"
 import banner4 from "../assest/banner images/banner4.png"
-// import banner5 from "../assest/banner images/banner5.jpg"
+// import banner5 from "../assest/banner images/banner.webp"
 import { FaAngleRight } from "react-icons/fa6";
 import { FaAngleLeft } from "react-icons/fa6";
 const BannerProduct = () => {
   const [currentImage, setCurrenetImage] = useState(0)
  const desktopImages = [
   banner1,
-  // banner2,
+  banner2,
   banner4,
   banner3,  
   // banner5
  ]
  const mobileImages = [
   banner1,
-  // banner2,
+  banner2,
   banner4,
   banner3,  
   // banner5
@@ -73,7 +73,7 @@ const BannerProduct = () => {
                 mobileImages.map((imageURL, index) => {
                   return(
                   <div className='w-full h-full min-w-full min-h-full transition-all' key={imageURL} style={{transform : `translateX(-${currentImage * 100}%)`}}>
-                    <img src={imageURL} className='h-[400px] w-full object-cover '/> 
+                    <img src={imageURL} className='h-[400px] w-full object-cover'/> 
                   </div>
                   )
                 })
