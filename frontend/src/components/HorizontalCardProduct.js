@@ -3,6 +3,8 @@ import fetchCategoryWiseProduct from '../helpers/fetchCategoryWiseProduct'
 import displayCurrency from '../helpers/displayCurrency'
 import { FaAngleRight } from "react-icons/fa6";
 import { FaAngleLeft } from "react-icons/fa6";
+import { Link } from 'react-router-dom';
+import addToCard from '../helpers/addToCard';
  
 const HorizontalCardProduct = ({category, heading}) => {
     const [data, setData] = useState([])
@@ -41,7 +43,7 @@ const HorizontalCardProduct = ({category, heading}) => {
         loading ? (
         loadingList.map((product, index) => {
             return(
-                <div className='w-full min-w-[320px] md:min-w-[360px]  max-w-[320px] md:max-w-[360px] h-36 bg-white rounded-sm shadow-md flex'>
+                <div className='w-full min-w-[320px] md:min-w-[360px]  max-w-[320px] md:max-w-[360px] h-36 bg-white rounded-sm shadow-md flex' key={index}>
                     <div className='bg-slate-200 h-full p-2 min-w-[120px] md:min-w-[145px] animate-pulse'>
                        
                     </div>
@@ -63,7 +65,7 @@ const HorizontalCardProduct = ({category, heading}) => {
         (
             data.map((product, index) => {
                 return(
-                    <div className='w-full min-w-[320px] md:min-w-[360px]  max-w-[320px] md:max-w-[360px] h-36 bg-white rounded-sm shadow-md flex'>
+                    <Link to={"product/" + product?._id} className='w-full min-w-[320px] md:min-w-[360px]  max-w-[320px] md:max-w-[360px] h-36 bg-white rounded-sm shadow-md flex' key={index}>
                         <div className='bg-slate-200 h-full p-2 min-w-[120px] md:min-w-[145px]'>
                            <img src={product?.productImage[0]} className='object-scale-down h-full hover:scale-110 transition-all'/>
                         </div>
@@ -76,9 +78,9 @@ const HorizontalCardProduct = ({category, heading}) => {
                                 <p className='text-orange-500 font-medium'>{ displayCurrency( product?.sellingPrice)}</p>
                                 <p className='text-slate-400 line-through'>{ displayCurrency( product?.price)}</p>
                             </div>
-                            <button className=' text-sm bg-orange-500 m-1 text-white px-4 py-1 rounded-full hover:bg-orange-600'>Add to Cart</button>
+                            <button className=' text-sm bg-orange-500 m-1 text-white px-4 py-1 rounded-full hover:bg-orange-600' onClick={(e) => addToCard(e, product?._id)}>Add to Cart</button>
                         </div>
-                   </div>
+                   </Link>
                    )
                 })
         )

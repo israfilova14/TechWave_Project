@@ -3,6 +3,8 @@ import fetchCategoryWiseProduct from '../helpers/fetchCategoryWiseProduct'
 import displayCurrency from '../helpers/displayCurrency'
 import { FaAngleRight } from "react-icons/fa6";
 import { FaAngleLeft } from "react-icons/fa6";
+import addToCard from '../helpers/addToCard';
+import { Link } from 'react-router-dom';
 
 const VerticalCardProduct = ({category, heading}) => {
     const [data, setData] = useState([])
@@ -40,7 +42,7 @@ const VerticalCardProduct = ({category, heading}) => {
         {
             data.map((product, index) => {
             return(
-                <div className='w-full min-w-[280px] md:min-w-[300px]  max-w-[280px] md:max-w-[300px] bg-white rounded-sm shadow-md '>
+                <Link to={"product/" + product?._id} className='w-full min-w-[280px] md:min-w-[300px]  max-w-[280px] md:max-w-[300px] bg-white rounded-sm shadow-md ' key={index}>
                     <div className='bg-slate-200 h-36 p-2 min-w-[280px] md:min-w-[145px] flex justify-center items-center mix-blend-multiply'>
                        <img src={product?.productImage[0]} className='object-scale-down h-full hover:scale-110 transition-all'/>
                     </div>
@@ -53,9 +55,9 @@ const VerticalCardProduct = ({category, heading}) => {
                             <p className='text-orange-500 font-medium'>{ displayCurrency( product?.sellingPrice)}</p>
                             <p className='text-slate-400 line-through'>{ displayCurrency( product?.price)}</p>
                         </div>
-                        <button className=' text-sm bg-orange-500 m-1 text-white px-4 py-1 rounded-full hover:bg-orange-600'>Add to Cart</button>
+                        <button className=' text-sm bg-orange-500 m-1 text-white px-4 py-1 rounded-full hover:bg-orange-600' onClick={(e) => addToCard(e, product?._id)}>Add to Cart</button>
                     </div>
-               </div>
+               </Link>
                )
             })
         }
