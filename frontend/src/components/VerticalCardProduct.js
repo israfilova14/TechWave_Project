@@ -1,16 +1,22 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react'
 import fetchCategoryWiseProduct from '../helpers/fetchCategoryWiseProduct'
 import displayCurrency from '../helpers/displayCurrency'
 import { FaAngleRight } from "react-icons/fa6";
 import { FaAngleLeft } from "react-icons/fa6";
 import addToCard from '../helpers/addToCard';
 import { Link } from 'react-router-dom';
+import Context from '../context';
 
 const VerticalCardProduct = ({category, heading}) => {
     const [data, setData] = useState([])
     const[loading, setLoading] = useState(false)
     const loadingList = new Array(24).fill(null)
     const [scroll, setScroll] = useState(0)
+    const {fetchUserAddToCart} = useContext(Context)
+    const handleAddToCart = async(e, id) => {
+        await addToCard(e, id)
+        fetchUserAddToCart()
+    } 
     const scrollElement = useRef()
     const fetchData = async() => {
         setLoading(true)
@@ -55,7 +61,7 @@ const VerticalCardProduct = ({category, heading}) => {
                             <p className='text-orange-500 font-medium'>{ displayCurrency( product?.sellingPrice)}</p>
                             <p className='text-slate-400 line-through'>{ displayCurrency( product?.price)}</p>
                         </div>
-                        <button className=' text-sm bg-orange-500 m-1 text-white px-4 py-1 rounded-full hover:bg-orange-600' onClick={(e) => addToCard(e, product?._id)}>Add to Cart</button>
+                        <button className='text-sm bg-orange-500 m-1 text-white px-4 py-1 rounded-full hover:bg-orange-600 hover:py-2' onClick={(e) => handleAddToCart(e, product?._id)}>Add to Cart</button>
                     </div>
                </Link>
                )

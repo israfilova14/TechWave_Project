@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Logo from './Logo';
 import { GoSearch } from "react-icons/go";
 import { FaRegCircleUser } from "react-icons/fa6";
@@ -9,12 +9,13 @@ import SummaryApi from '../common';
 import { toast } from 'react-toastify';
 import { setUserDetails } from '../store/userSlice';
 import ROLE from '../common/role';
+import Context from '../context';
 
 const Header = () => {
   const user = useSelector(state => state.user?.user);
   const dispatch = useDispatch();
   const [menuDisplay, setMenuDisplay] = useState(false)
-
+  const context = useContext(Context)
   useEffect(() => {
     console.log("User state in Header component:", user);
   }, [user]);
@@ -42,7 +43,7 @@ const Header = () => {
       toast.error('Logout failed. Please try again.');
     }
   };
-
+  console.log("header add to cart count", context);
   return (
     <header className='h-16 shadow-md bg-white fixed w-full z-20'>
       <div className='h-full container mx-auto flex items-center px-4 justify-between'>
@@ -87,12 +88,17 @@ const Header = () => {
                )
              }
           </div>
-          <div className='text-3xl relative'>
-            <span><IoCartOutline /></span>
-            <div className='bg-orange-600 text-white w-5 h-5 rounded-full p-1 flex items-center justify-center absolute -top-2 right-3 '>
-              <p className='text-sm'>0</p>
-            </div>
-          </div>
+          {
+            user?._id && (
+              <Link to={"/cart"} className='text-3xl relative'>
+                  <span><IoCartOutline /></span>
+                  <div className='bg-orange-600 text-white w-5 h-5 rounded-full p-1 flex items-center justify-center absolute -top-2 right-3 '>
+                    <p className='text-sm'>{context?.cartProductCount}</p>
+                  </div>
+              </Link>
+            )
+          }
+          
           <div>
             {user ? (
               <button 

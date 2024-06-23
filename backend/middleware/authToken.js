@@ -8,7 +8,7 @@ async function authToken(req, res, next) {
         // If token is missing, return 401 (Unauthorized)
         if (!token) {
             return res.status(401).json({
-                message: "User not logged in",
+                message: "Please Login...!",
                 error: true,
                 success: false
             });
