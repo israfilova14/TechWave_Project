@@ -2,7 +2,7 @@ const uploadProductPermission = require("../../helpers/permission")
 const productModel = require("../../modules/productModel")
 
 async function UploadProductController(req,res){
-    console.log("hello");
+    
     try{
         const sessionUserId = req.userId
 

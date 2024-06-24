@@ -3,6 +3,7 @@ import SummaryApi from '../../common';
 import { toast } from 'react-toastify';
 import moment from 'moment';
 import { MdOutlineModeEditOutline } from 'react-icons/md';
+import { MdDeleteOutline } from "react-icons/md";
 import ChangeUserRole from '../ChangeUserRole';
 
 const AllUsers = () => {
@@ -56,7 +57,7 @@ const AllUsers = () => {
             <th>Email</th>
             <th>Role</th>
             <th>Created Date</th>
-            <th>Action</th>
+            <th>Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -67,7 +68,7 @@ const AllUsers = () => {
               <td>{element?.email}</td>
               <td>{element?.role}</td>
               <td>{moment(element?.createdAt).format('l')}</td>
-              <td>
+              <td className='flex gap-3 items-center justify-center'>
                 <button
                   className="bg-green-100 p-2 rounded-full cursor-pointer hover:bg-green-500 hover:text-white"
                   onClick={() => {
@@ -77,7 +78,13 @@ const AllUsers = () => {
                 >
                   <MdOutlineModeEditOutline />
                 </button>
-              </td>
+                <button
+                 className="bg-orange-100 p-2 rounded-full cursor-pointer hover:bg-orange-500 hover:text-white"
+                 
+                >
+                  <MdDeleteOutline/>
+                </button>
+              </td> 
             </tr>
           ))}
         </tbody>

@@ -12,6 +12,7 @@ const Home = () => {
       <HorizontalCardProduct category={"earphone"} heading={"Earphones"}/>
       <HorizontalCardProduct category={"headphone"} heading={"Headphones"}/>
       <HorizontalCardProduct category={"phone"} heading={"Phone"}/>
+      <HorizontalCardProduct category={"camera"} heading={"Camera"}/>
       <VerticalCardProduct category={"mause"} heading={"Mause"}/>
       <VerticalCardProduct category={"noutbook"} heading={"Noutbook"}/>
       <VerticalCardProduct category={"tablet"} heading={"Tablet"}/>
