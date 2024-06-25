@@ -3,7 +3,7 @@ import Logo from './Logo';
 import { GoSearch } from "react-icons/go";
 import { FaRegCircleUser } from "react-icons/fa6";
 import { IoCartOutline } from "react-icons/io5";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
 import SummaryApi from '../common';
 import { toast } from 'react-toastify';
@@ -17,6 +17,9 @@ const Header = () => {
   const [menuDisplay, setMenuDisplay] = useState(false)
   const context = useContext(Context)
   const navigate = useNavigate()
+  const searchInput = useLocation()
+  const [search, setSearch] = useState(searchInput?.search?.split("=")[1])
+  console.log("searchInput", searchInput?.search.split("=")[1]);
   useEffect(() => {
     console.log("User state in Header component:", user);
   }, [user]);
@@ -47,6 +50,7 @@ const Header = () => {
   console.log("header add to cart count", context);
   const handleSearch = (e) => {
       const {value} = e.target
+      setSearch(value)
       if(value){
           navigate(`/search?q=${value}`)
       }else{
@@ -66,6 +70,7 @@ const Header = () => {
             className='w-full outline-none pl-2' 
             id='inp'
             onChange={handleSearch}
+            value={search}
           />
           <div className='text-lg min-w-[50px] h-8 bg-orange-600 flex items-center justify-center rounded-r-full text-white'>
             <GoSearch />

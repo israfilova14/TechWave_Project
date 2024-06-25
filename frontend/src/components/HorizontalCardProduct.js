@@ -10,7 +10,7 @@ import Context from '../context';
 const HorizontalCardProduct = ({category, heading}) => {
     const [data, setData] = useState([])
     const[loading, setLoading] = useState(true)
-    const loadingList = new Array(24).fill(null)
+    const loadingList = new Array(13).fill(null)
     const [scroll, setScroll] = useState(0)
     const {fetchUserAddToCart} = useContext(Context)
     const handleAddToCart = async(e, id) => {
@@ -71,7 +71,7 @@ const HorizontalCardProduct = ({category, heading}) => {
         (
             data.map((product, index) => {
                 return(
-                    <Link to={"product/" + product?._id} className='w-full min-w-[320px] md:min-w-[360px]  max-w-[320px] md:max-w-[360px] h-36 bg-white rounded-sm shadow-md flex' key={index}>
+                    <Link to={"/product/" + product?._id} className='w-full min-w-[320px] md:min-w-[360px]  max-w-[320px] md:max-w-[360px] h-36 bg-white rounded-sm shadow-md flex' key={index}>
                         <div className='bg-slate-200 h-full p-2 min-w-[120px] md:min-w-[145px]'>
                            <img src={product?.productImage[0]} className='object-scale-down h-full hover:scale-110 transition-all'/>
                         </div>
@@ -97,4 +97,3 @@ const HorizontalCardProduct = ({category, heading}) => {
 }
 
 export default HorizontalCardProduct
- 

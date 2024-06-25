@@ -10,7 +10,7 @@ import Context from '../context';
 const VerticalCardProduct = ({category, heading}) => {
     const [data, setData] = useState([])
     const[loading, setLoading] = useState(false)
-    const loadingList = new Array(24).fill(null)
+    const loadingList = new Array(13).fill(null)
     const [scroll, setScroll] = useState(0)
     const {fetchUserAddToCart} = useContext(Context)
     const handleAddToCart = async(e, id) => {
@@ -48,7 +48,7 @@ const VerticalCardProduct = ({category, heading}) => {
         {
             data.map((product, index) => {
             return(
-                <Link to={"product/" + product?._id} className='w-full min-w-[280px] md:min-w-[300px]  max-w-[280px] md:max-w-[300px] bg-white rounded-sm shadow-md ' key={index}>
+                <Link to={"product/" + product?._id} className='w-full min-w-[360px] md:min-w-[320px]  max-w-[360px] md:max-w-[320px] bg-white rounded-sm shadow-md ' key={index}>
                     <div className='bg-slate-200 h-36 p-2 min-w-[280px] md:min-w-[145px] flex justify-center items-center mix-blend-multiply'>
                        <img src={product?.productImage[0]} className='object-scale-down h-full hover:scale-110 transition-all'/>
                     </div>
