@@ -1,22 +1,25 @@
 import React, { useEffect, useState } from 'react'
 import SummaryApi from '../common'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 
 const CategoryList = () => {
-    const [categoryProduct, setCategoryProduct] = useState([])
-    const [loading, setLoading] = useState(false)
+  const [categoryProduct,setCategoryProduct] = useState([])
+  const [loading,setLoading] = useState(false)
 
-    const categoryLoading = new Array(24).fill(null)
-    const fetchCategoryProduct  = async() => {
-        setLoading(true)
+  const categoryLoading = new Array(13).fill(null)
+
+  const fetchCategoryProduct = async() =>{
+      setLoading(true)
       const response = await fetch(SummaryApi.categoryProduct.url)
       const dataResponse = await response.json()
       setLoading(false)
       setCategoryProduct(dataResponse.data)
-    }
-    useEffect(() => {
-        fetchCategoryProduct()
-    },[])
+  }
+
+  useEffect(()=>{
+      fetchCategoryProduct()
+  },[])
+  
   return (
     <div className='container mx-auto p-3'>
        <div className='flex items-center gap-3 justify-between overflow-y-scroll scrollbar-none'>
@@ -32,7 +35,7 @@ const CategoryList = () => {
                   (
                     categoryProduct.map((product, index) => {
                         return(
-                            <Link to={"/product-category/" + product?.category} className='p-3 cursor-pointer' key={product?.category + index}>
+                            <Link to={"/product-category?category=" + product?.category} className='p-3 cursor-pointer' key={product?.category + index}>
                                 <div className=' w-16 h-16 md:w-20 md:h-20 p-2 rounded-full overflow-hidden bg-white flex items-center justify-center flex-wrap'>
                                     <img src={product?.productImage[0]} alt={product.category} className='h-full object-scale-down mix-blend-multiply hover:scale-125 transition-all'/>
                                 </div>

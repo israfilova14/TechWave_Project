@@ -1,5 +1,4 @@
- 
-const backendDomin = "http://localhost:8080"
+ const backendDomin = "http://localhost:8080"
 
 const SummaryApi = {
     signUP : {
@@ -73,7 +72,10 @@ const SummaryApi = {
     searchProduct : {
         url : `${backendDomin}/api/search`,
         method : "get"
-    }
-    
+    },
+    filterProduct : {
+        url : `${backendDomin}/api/filter-product`,
+        method : "post"
+    } 
 }
 export default SummaryApi
