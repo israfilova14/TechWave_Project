@@ -47,6 +47,29 @@ const AllUsers = () => {
     );
   };
 
+  const deleteUser = async (userId) => {
+    try {
+      const response = await fetch(SummaryApi.deleteUser.url, {
+        method: SummaryApi.deleteUser.method,
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ _id: userId }),
+        credentials: 'include'
+      });
+      const dataResponse = await response.json();
+      if (dataResponse.success) {
+        setAllUsers(allUsers.filter(user => user._id !== userId));
+        toast.success("User Deleted Successfully");
+      } else {
+        toast.error(dataResponse.message);
+      }
+    } catch (error) {
+      console.error('Error deleting user:', error);
+      toast.error('Failed to delete user');
+    }
+  };
+
   return (
     <div className="pb-4 bg-white">
       <table className="w-full userTable">
@@ -80,7 +103,7 @@ const AllUsers = () => {
                 </button>
                 <button
                  className="bg-orange-100 p-2 rounded-full cursor-pointer hover:bg-orange-500 hover:text-white"
-                 
+                 onClick={() => deleteUser(element._id)}
                 >
                   <MdDeleteOutline/>
                 </button>

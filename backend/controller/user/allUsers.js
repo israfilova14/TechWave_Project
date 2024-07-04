@@ -1,21 +1,4 @@
-// async function allUsers(req, res){
-//     try{
-//       console.log("userid all Users", req.userId);
-//       res.json({
-//         message : "All Users"
-//       })
-//     }catch(err){
-//         res.status(400).json({
-//             message : err.message || err,
-//             error : true,
-//             success : false
-//           })
-//     }
-// }
-
 const userModel = require("../../modules/userModel");
-
-// module.exports = allUsers
 async function allUsers(req, res) {
     try {
         console.log("Entering allUsers function");  // Log when function is called

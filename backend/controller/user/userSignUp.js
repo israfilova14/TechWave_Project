@@ -1,9 +1,9 @@
- const bcrypt = require('bcryptjs');
+const bcrypt = require('bcryptjs');
 const userModel = require('../../modules/userModel');
 
 async function userSignUpController(req, res) {
     try {
-        const { name, email, password } = req.body;
+        const { name, email, password, role = 'GENERAL' } = req.body; // Default role to 'user'
         console.log("req.body", req.body);
 
         if (!name) {
