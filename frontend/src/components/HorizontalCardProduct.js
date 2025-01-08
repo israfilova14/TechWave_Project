@@ -17,7 +17,7 @@ const HorizontalCardProduct = ({category, heading}) => {
         await addToCard(e, id)
         fetchUserAddToCart()
     }
-    const scrollElement = useRef()
+    const scrollElement = useRef();
     const fetchData = async() => {
         setLoading(true)
         const categoryProduct = await fetchCategoryWiseProduct(category)
