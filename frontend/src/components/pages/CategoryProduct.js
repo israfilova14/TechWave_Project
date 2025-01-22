@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import {useLocation, useNavigate} from 'react-router-dom'
 import SummaryApi from '../../common'
-import VerticalCart from '../VerticalCart'
 import productCategory from '../../helpers/productCategory'
+import VerticalProductCartModel from '../VerticalProductCartModel'
 
 const CategoryProduct = () => {
     const [data,setData] = useState([])
@@ -141,7 +141,7 @@ const CategoryProduct = () => {
              <div className='min-h-[calc(100vh-120px)] overflow-y-scroll max-h-[calc(100vh-120px)]'>
               {
                   data.length !== 0 && !loading && (
-                    <VerticalCart data={data} loading={loading}/>
+                    <VerticalProductCartModel data={data} loading={loading}/>
                   )
               }
              </div>

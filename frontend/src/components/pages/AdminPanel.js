@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useSelector } from 'react-redux';
-import { FaRegCircleUser } from "react-icons/fa6";
+import adminLogo from '../../assest/adminLogo.jpg'
 import { Link, Outlet, useNavigate } from 'react-router-dom';
 import ROLE from '../../common/role';
  
@@ -20,7 +20,7 @@ const AdminPanel = () => {
                 {user?.profilePic ? (
                     <img src={user?.profilePic} alt="Profile" className='w-8 h-8 rounded-full' />
                 ) : (
-                    <FaRegCircleUser />
+                     <img src={adminLogo} className='w-24 h-24'/>
                 )}
                 </div>
                 <p className='capitalize text-lg font-medium'>{user?.name}</p>
@@ -29,8 +29,8 @@ const AdminPanel = () => {
            {/* navigation */}
            <div>
               <nav className='grid p-4'>
-                <Link to={"all-users"} className='px-2 py-1 hover:bg-slate-200'>All users</Link>
-                <Link to={"all-products"} className='px-2 py-1 hover:bg-slate-200'>All products</Link>
+                <Link to={"all-users"} className='px-2 py-1 hover:bg-slate-200'>All Users</Link>
+                <Link to={"all-products"} className='px-2 py-1 hover:bg-slate-200'>All Products</Link>
               </nav>
            </div>
         </aside>

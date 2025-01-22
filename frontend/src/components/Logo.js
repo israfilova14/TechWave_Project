@@ -1,9 +1,9 @@
 import React from 'react'
  
-const Logo = ({w, h}) => {
+const Logo = () => {
   return (
     <div>
-       <h2 className='from-neutral-700 text-3xl'>amazon</h2>
+       <h2 className='text-neutral-700 text-2xl font-semibold'>Tech <span className='text-orange-600'>Wave.</span></h2>
     </div>
   )
 }

@@ -91,23 +91,29 @@ const Cart = () => {
    }
    const totalQuantity = data.reduce((previousValue, currentValue) => previousValue + currentValue.quantity, 0)
    const totalPrice = data.reduce((previous, current) => previous + (current.quantity * current?.productId?.sellingPrice) ,0)
+
   return (
-    <div className='container mx-auto'>
-        <div className='text-center text-lg my-3'>
+    <div className='container p-5'>
+        <div className='text-center text-lg my-3 flex items-center justify-center'>
             {
                 data.length === 0 && !loading && (
-                    <p className='bg-white hover:text-orange-400 py-2'>There are no products in your cart</p>
+                    <div className='hover:text-orange-400 py-2 w-[60%] h-24 bg-white flex items-center justify-center rounded-lg shadow-lg'>
+                        <p>There are no products in your cart</p>
+                    </div>
                 )
             }
         </div>
-        <div className='flex flex-col lg:flex-row gap-10 lg:justify-center'>
+        <div className='flex flex-col lg:flex-row gap-10 lg:justify-center w-full'>
             {/* view product */}
-            <div className='w-full max-w-3xl'>
+            <div className='w-full'>
                 {
                     loading ? (
                         loadingCart.map(element => {
                             return (
-                                <div key={element + "Add To Cart Loading "} className='w-full h-32 my-2 bg-white animate-pulse border border-slate-200 rounded mx-auto'>
+                                <div 
+                                  key={element + "Add To Cart Loading "} 
+                                  className='w-full h-32 my-2 bg-white animate-pulse border border-slate-200 rounded mx-auto'
+                                >
                                      
                                 </div>
                             )
@@ -115,25 +121,28 @@ const Cart = () => {
                     ):(
                         data.map((product, index) => {
                             return(
-                                <div key={product?._id + "Add To Cart Loading"} className='w-full h-32 my-2 bg-white border border-slate-200 rounded flex gap-2'>
-                                     <div className='w-28 h-28'>
-                                        <img src={product?.productId?.productImage[0]} className='w-full h-full object-scale-down mix-blend-multiply'/>
+                                <div 
+                                    key={product?._id + "Add To Cart Loading"}
+                                    className='w-[70%] h-36 my-2 bg-white border border-[#f0f0f0] rounded flex gap-2'
+                                >
+                                     <div className='w-36 h-36 bg-[#f0f0f0]'>
+                                        <img src={product?.productId?.productImage[0]} className='w-36 h-36 object-scale-down mix-blend-multiply'/>
                                      </div>
                                      <div className='p-2 relative w-full'>
                                         {/* delete product */}
-                                        <div className='absolute right-0  bg-orange-100 rounded-full text-2xl p-1 mr-2 hover:bg-orange-400 hover:text-white cursor-pointer' onClick={() => deleteCartProduct(product?._id)}>
+                                        <div className='absolute right-0  bg-orange-500 rounded-full text-2xl p-1 mr-2 hover:bg-orange-600 text-white cursor-pointer' onClick={() => deleteCartProduct(product?._id)}>
                                            <MdDeleteOutline/>
                                         </div>
                                         <p className='text-lg text-ellipsis line-clamp-1'>{product?.productId?.productName}</p>
-                                        <p className='text-slate-500'>{product?.productId?.category}</p>
+                                        <p className='text-slate-600'>{product?.productId?.category}</p>
                                         <div className='flex items-center justify-between'>
-                                          <p className='text-orange-500'>{displayCurrency(product?.productId?.sellingPrice)}</p>
+                                          <p className='text-orange-600'>{displayCurrency(product?.productId?.sellingPrice)}</p>
                                           <p className='text-black-500'>{displayCurrency(product?.productId?.sellingPrice * product?.quantity)}</p>
                                         </div>
                                         <div className='flex items-center gap-2 pt-2'>
-                                            <button className='border border-orange-500 px-2 rounded hover:bg-orange-500 hover:text-white' onClick={() => decreaseQuantity(product?._id, product?.quantity)}>-</button>
+                                            <button className='border border-orange-600 px-2 rounded hover:bg-orange-600 hover:text-white' onClick={() => decreaseQuantity(product?._id, product?.quantity)}>-</button>
                                             <span>{product?.quantity}</span>
-                                            <button className='border border-green-500 px-2 rounded hover:bg-green-500 hover:text-white' onClick={() => increaseQuantity(product?._id, product?.quantity)}>+</button>
+                                            <button className='border border-green-600 px-2 rounded hover:bg-green-600 hover:text-white' onClick={() => increaseQuantity(product?._id, product?.quantity)}>+</button>
                                         </div>
                                      </div>
                                 </div>
@@ -145,22 +154,25 @@ const Cart = () => {
             {/* Total product */}
              <div className='mt-5 lg:mt-0 w-full max-w-sm'>
                 {
-                    loading ? (
-                    <div className='h-36 bg-white border border-slate-200 animate-pulse'>
-                        Total
-                    </div>
-                    ):(
-                    <div className='h-36 bg-white border border-slate-200'>
-                         <h2 className='text-white bg-green-500 px-3 py-1'>Total Products</h2>
-                         <div className='flex gap-2 items-center p-1'>
-                            <p>Quantity : </p>
-                            <p>{totalQuantity}</p>
-                         </div>
-                         <div className='flex gap-2 items-center p-1'>
-                            <p>Total Price : </p>
-                            <p>{displayCurrency(totalPrice)}</p>
-                         </div>
-                    </div>
+                    data[0] && (
+                        
+                            loading ? (
+                            <div className='h-36 bg-white border border-slate-200 animate-pulse'>
+                                Total
+                            </div>
+                            ):(
+                            <div className='h-36 bg-white border border-slate-200'>
+                                 <h2 className='text-white bg-green-500 px-3 py-1'>Total Products</h2>
+                                 <div className='flex gap-2 items-center p-1'>
+                                    <p>Quantity : </p>
+                                    <p>{totalQuantity}</p>
+                                 </div>
+                                 <div className='flex gap-2 items-center p-1'>
+                                    <p>Total Price : </p>
+                                    <p>{displayCurrency(totalPrice)}</p>
+                                 </div>
+                            </div>
+                            )
                     )
                 }
              </div>

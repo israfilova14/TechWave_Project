@@ -93,19 +93,19 @@ const AllUsers = () => {
               <td>{moment(element?.createdAt).format('l')}</td>
               <td className='flex gap-3 items-center justify-center'>
                 <button
-                  className="bg-green-100 p-2 rounded-full cursor-pointer hover:bg-green-500 hover:text-white"
+                  className="bg-green-500 p-1 rounded-full cursor-pointer hover:bg-green-600 text-white"
                   onClick={() => {
                     setUpdateUserDetails(element);
                     setOpenUpdateRole(true);
                   }}
                 >
-                  <MdOutlineModeEditOutline />
+                  <MdOutlineModeEditOutline size={20}/>
                 </button>
                 <button
-                 className="bg-orange-100 p-2 rounded-full cursor-pointer hover:bg-orange-500 hover:text-white"
+                 className="bg-orange-500 p-1 rounded-full cursor-pointer hover:bg-orange-600 text-white"
                  onClick={() => deleteUser(element._id)}
                 >
-                  <MdDeleteOutline/>
+                  <MdDeleteOutline size={20}/>
                 </button>
               </td> 
             </tr>

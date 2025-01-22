@@ -59,7 +59,7 @@ const Header = () => {
   }
   return (
     <header className='h-16 shadow-md bg-white fixed w-full z-20'>
-      <div className='h-full container mx-auto flex items-center px-4 justify-between'>
+      <div className='h-full w-[90%] container mx-auto flex items-center px-4 justify-between'>
         <Link to={'/'}>
           <Logo />
         </Link>
@@ -84,7 +84,7 @@ const Header = () => {
                   {user?.profilePic ? (
                     <img src={user.profilePic} alt="Profile" className='w-8 h-8 rounded-full' />
                   ) : (
-                    <FaRegCircleUser />
+                    <FaRegCircleUser/>
                   )}
               </div>
               )
@@ -95,7 +95,12 @@ const Header = () => {
                   <nav>
                     {
                       user?.role === ROLE.ADMIN && (
-                        <Link to={"/admin-panel/all-products"} className='whitespace-nowrap hidden md:block hover: bg-slate-100 p-2' onClick={()=>setMenuDisplay(preve => !preve)}>Admin Panel</Link>
+                        <Link 
+                           to={"/admin-panel/all-products"} 
+                           className='whitespace-nowrap hover: bg-slate-100 p-2' onClick={()=>setMenuDisplay(preve => !preve)}
+                        >
+                          Admin Panel
+                        </Link>
                       )
                     }
                   </nav>

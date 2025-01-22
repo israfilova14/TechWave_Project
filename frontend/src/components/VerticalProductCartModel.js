@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import displayCurrency from '../helpers/displayCurrency'
 import addToCard from '../helpers/addToCard'
 
-const VerticalCart = ({loading,data = []}) => {
+const VerticalProductCartModel = ({loading,data = []}) => {
     const loadingList = new Array(13).fill(null)
     const { fetchUserAddToCart } = useContext(Context)
 
@@ -14,13 +14,15 @@ const VerticalCart = ({loading,data = []}) => {
     }
 
   return (
-    <div className='grid grid-cols-[repeat(auto-fit,minmax(260px,300px))] justify-center md:justify-between md:gap-4 overflow-x-scroll scrollbar-none transition-all'>
+    <div 
+    className='flex flex-wrap gap-3 overflow-x-scroll scrollbar-none transition-all'
+    >
     {
 
          loading ? (
              loadingList.map((product,index)=>{
                  return(
-                     <div className='w-full min-w-[280px]  md:min-w-[320px] max-w-[280px] md:max-w-[320px]  bg-white rounded-sm shadow '>
+                     <div className='w-full min-w-[280px]  md:min-w-[300px] max-w-[280px] md:max-w-[300px]  bg-white rounded-sm shadow '>
                          <div className='bg-slate-200 h-48 p-4 min-w-[280px] md:min-w-[145px] flex justify-center items-center animate-pulse'>
                          </div>
                          <div className='p-4 grid gap-3'>
@@ -61,4 +63,4 @@ const VerticalCart = ({loading,data = []}) => {
   )
 }
 
-export default VerticalCart
+export default VerticalProductCartModel

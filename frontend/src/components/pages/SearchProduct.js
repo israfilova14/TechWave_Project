@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom'
-import VerticalCart from '../VerticalCart'
 import SummaryApi from '../../common'
+import VerticalProductCartModel from '../VerticalProductCartModel'
 
 const SearchProduct = () => {
     const query = useLocation()
@@ -42,7 +42,7 @@ const SearchProduct = () => {
 
       {
         data.length !==0 && !loading && (
-          <VerticalCart loading={ loading} data={data}/>
+          <VerticalProductCartModel loading={ loading} data={data}/>
         )
       }
 

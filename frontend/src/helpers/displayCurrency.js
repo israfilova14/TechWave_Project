@@ -1,7 +1,7 @@
 const displayCurrency = (num) => {
-    const formatter = new Intl.NumberFormat('az-AZ', {
+    const formatter = new Intl.NumberFormat('en-US', {
       style: "currency",
-      currency: 'AZN',
+      currency: 'USD',
       minimumFractionDigits: 2
     });
     return formatter.format(num);

@@ -54,8 +54,12 @@ const ProductDetails = () => {
       setZoomImage(true)
       const {left, top, width, height} = e.target.getBoundingClientRect()
       console.log("coordinate", left, top, width, height);
-      const x = (e.clientX - left) / width
-      const y = (e.clientY - top) / height
+      let x = (e.clientX - left) / width
+      let y = (e.clientY - top) / height
+
+      x = Math.max(0, Math.min(1, x))
+      y = Math.max(0, Math.min(1, y))
+
       setZoomImageCoordinate({
         x,
         y
