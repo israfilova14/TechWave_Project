@@ -60,7 +60,8 @@ async function userSignInController(req, res) {
         // Set token as a cookie in the response
         const tokenOption = {
             httpOnly: true,
-            secure: true // Ensure to set secure flag in production
+            secure: true,
+            sameSite: 'None' // Ensure to set secure flag in production
         };
         res.cookie("token", token, tokenOption);
 
